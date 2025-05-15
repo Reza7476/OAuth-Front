@@ -2,7 +2,6 @@
 
 namespace OAuth_Front.Application.Entities.Users.Contracts;
 
-public interface IUserService : IService
+public interface IUserRepository:IRepository
 {
-    Task<List<GetAllUserDto>> GetAll();
 }
