@@ -1,0 +1,733 @@
+﻿
+<!doctype html>
+<html lang="en" dir="rtl">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>مدیریت سایت</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/Layout/assets/images/favicon.ico">
+
+    <!-- plugin css -->
+    <link href="~/Layout/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="~/Layout/assets/css/preloader.min.css" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="~/Layout/assets/css/bootstrap-rtl.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="~/Layout/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="~/Layout/assets/css/app-rtl.min.css" id="app-style" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <!-- <body data-layout="horizontal"> -->
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+                        <a href="index.php" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="~/Layout/assets/images/logo-sm.svg" alt="" height="24">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="~/Layout/assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">فوداتکو</span>
+                            </span>
+                        </a>
+
+                        <a href="index.php" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="~/Layout/assets/images/logo-sm.svg" alt="" height="24">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="~/Layout/assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">فوداتکو</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+                    <!-- App Search-->
+                    <form class="app-search d-none d-lg-block">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="جستجو ...">
+                            <button class="btn btn-primary" type="button"><i class="bx bx-search-alt align-middle"></i></button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="d-flex">
+
+                    <div class="dropdown d-inline-block d-lg-none ms-2">
+                        <button type="button" class="btn header-item" id="page-header-search-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i data-feather="search" class="icon-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                             aria-labelledby="page-header-search-dropdown">
+
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="جستجو ..." aria-label="Search Result">
+
+                                        <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                    <div class="dropdown d-none d-sm-inline-block">
+                        <button type="button" class="btn header-item" id="mode-setting-btn">
+                            <i data-feather="moon" class="icon-lg layout-mode-dark"></i>
+                            <i data-feather="sun" class="icon-lg layout-mode-light"></i>
+                        </button>
+                    </div>
+
+                    <div class="dropdown d-none d-lg-inline-block ms-1">
+                        <button type="button" class="btn header-item"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i data-feather="grid" class="icon-lg"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                            <div class="p-2">
+                                <div class="row g-0">
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="~/Layout/assets/images/brands/github.png" alt="Github">
+                                            <span>گیت هاب</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="~/Layout/assets/images/brands/bitbucket.png" alt="bitbucket">
+                                            <span>بیت باکت</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="~/Layout/assets/images/brands/dribbble.png" alt="dribbble">
+                                            <span>دریبل</span>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="row g-0">
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="~/Layout/assets/images/brands/dropbox.png" alt="dropbox">
+                                            <span>دراپ باکس</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="~/Layout/assets/images/brands/mail_chimp.png" alt="mail_chimp">
+                                            <span>میل چیمپ</span>
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="dropdown-icon-item" href="#">
+                                            <img src="~/Layout/assets/images/brands/slack.png" alt="slack">
+                                            <span>اسلاک</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item noti-icon position-relative" id="page-header-notifications-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i data-feather="bell" class="icon-lg"></i>
+                            <span class="badge bg-danger rounded-pill">۴</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                             aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0">اعلانات</h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="#!" class="small text-reset text-decoration-underline">۴ پیام خوانده نشده</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar style="max-height: 230px;">
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img src="~/Layout/assets/images/users/avatar-3.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1"></h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1"></p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>۵۸ دقیقه پیش</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 avatar-sm me-3">
+                                            <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                <i class="bx bx-cart"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">سفارش شما ثبت شد</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1"></p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>۴۸ دقیقه پیش</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 avatar-sm me-3">
+                                            <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                <i class="bx bx-badge-check"></i>
+                                            </span>
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">سفارش شما ارسال شد</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1"></p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>۳ دقیقه پیش</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#!" class="text-reset notification-item">
+                                    <div class="d-flex">
+                                        <div class="flex-shrink-0 me-3">
+                                            <img src="~/Layout/assets/images/users/avatar-6.jpg" class="rounded-circle avatar-sm" alt="user-pic">
+                                        </div>
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-1">مختار مینائی</h6>
+                                            <div class="font-size-13 text-muted">
+                                                <p class="mb-1"></p>
+                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i> <span>۴۵ دقیقه پیش</span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="p-2 border-top d-grid">
+                                <a class="btn btn-sm btn-link font-size-14 text-center" href="javascript:void(0)">
+                                    <i class="mdi mdi-arrow-right-circle me-1"></i> <span>مشاهده همه</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item right-bar-toggle me-2">
+                            <i data-feather="settings" class="icon-lg"></i>
+                        </button>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item bg-soft-light border-start border-end" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="~/Layout/assets/images/users/avatar-1.jpg"
+                                 alt="Header Avatar">
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium">ادمین</span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+                            <a class="dropdown-item" href="apps-contacts-profile.php"><i class="mdi mdi-face-profile font-size-16 align-middle me-1"></i>پروفایل</a>
+                            <a class="dropdown-item" href="auth-lock-screen.php"><i class="mdi mdi-lock font-size-16 align-middle me-1"></i>قفل صفحه</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="logout.php"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i>خروج</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+        <div class="vertical-menu">
+
+            <div data-simplebar class="h-100">
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+                        <li class="menu-title" data-key="t-menu">منو</li>
+
+                        <li>
+                            <a href="index.html">
+                                <i data-feather="home"></i>
+                                <span data-key="t-dashboard">داشبورد</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps">اپلیکیشن</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li>
+                                    <a href="apps-calendar.html">
+                                        <span data-key="t-calendar">تقویم</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="datepicker.html">
+                                        <span data-key="t-chat">دیت پیکر شمسی</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="apps-chat.html">
+                                        <span data-key="t-chat">چت</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow">
+                                        <span data-key="t-email">ایمیل</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="apps-email-inbox.html" data-key="t-inbox">دریافتی</a></li>
+                                        <li><a href="apps-email-read.html" data-key="t-read-email">خوانده شده</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow">
+                                        <span data-key="t-invoices">صورتحساب</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="apps-invoices-list.html" data-key="t-invoice-list">لیست صورتحساب ها</a></li>
+                                        <li><a href="apps-invoices-detail.html" data-key="t-invoice-detail">جزئیات صورتحساب</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow">
+                                        <span data-key="t-contacts">ارتباطات</span>
+                                    </a>
+                                    <ul class="sub-menu" aria-expanded="false">
+                                        <li><a href="apps-contacts-grid.html" data-key="t-user-grid">ناحیه کاربری</a></li>
+                                        <li><a href="apps-contacts-list.html" data-key="t-user-list">لیست کاربران</a></li>
+                                        <li><a href="apps-contacts-profile.html" data-key="t-profile">پروفایل</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="users"></i>
+                                <span data-key="t-authentication">احراز هویت</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-login.html" data-key="t-login">لاگین</a></li>
+                                <li><a href="pages-register.html" data-key="t-register">ثبت نام</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="file-text"></i>
+                                <span data-key="t-pages">صفحات</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="pages-starter.html" data-key="t-starter-page">صفحه خالی</a></li>
+                                <li><a href="pages-maintenance.html" data-key="t-maintenance">صفحات ضروری</a></li>
+
+                                <li><a href="pages-timeline.html" data-key="t-timeline">تایم لاین</a></li>
+                                <li><a href="pages-faqs.html" data-key="t-faqs">سوالات</a></li>
+                                <li><a href="pages-pricing.html" data-key="t-pricing">قیمت ها</a></li>
+                                <li><a href="pages-404.html" data-key="t-error-404">صفحه ۴۰۴</a></li>
+                                <li><a href="pages-500.html" data-key="t-error-500">صفحه ۵۰۰</a></li>
+                            </ul>
+                        </li>
+
+
+
+                        <li class="menu-title mt-2" data-key="t-components">المنت ها</li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="briefcase"></i>
+                                <span data-key="t-components">کامپوننت ها</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="ui-alerts.html" data-key="t-alerts">هشدارها</a></li>
+                                <li><a href="ui-buttons.html" data-key="t-buttons">دکمه ها</a></li>
+                                <li><a href="ui-cards.html" data-key="t-cards">کاردها</a></li>
+                                <li><a href="ui-carousel.html" data-key="t-carousel">اسلایدر</a></li>
+                                <li><a href="ui-dropdowns.html" data-key="t-dropdowns">دراپ داون</a></li>
+                                <li><a href="ui-grid.html" data-key="t-grid">بخش بندی</a></li>
+                                <li><a href="ui-images.html" data-key="t-images">تصاویر</a></li>
+                                <li><a href="ui-modals.html" data-key="t-modals">مدال ها</a></li>
+                                <li><a href="ui-offcanvas.html" data-key="t-offcanvas">کانونس</a></li>
+                                <li><a href="ui-progressbars.html" data-key="t-progress-bars">پراگرس بار</a></li>
+                                <li><a href="ui-tabs-accordions.html" data-key="t-tabs-accordions">تب ها</a></li>
+                                <li><a href="ui-typography.html" data-key="t-typography">تایپو گرافی</a></li>
+                                <li><a href="ui-video.html" data-key="t-video">ویدئو</a></li>
+                                <li><a href="ui-general.html" data-key="t-general">کلیات</a></li>
+                                <li><a href="ui-colors.html" data-key="t-colors">رنگ ها</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="gift"></i>
+                                <span data-key="t-ui-elements">المان ها</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+
+                                <li><a href="extended-sweet-alert.html" data-key="t-sweet-alert">سوئیت الرت2</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i data-feather="box"></i>
+                                <span class="badge rounded-pill bg-soft-danger text-danger float-end">۷</span>
+                                <span data-key="t-forms">فرم ها</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="form-elements.html" data-key="t-form-elements">فرم ساده</a></li>
+
+                                <li><a href="form-advanced.html" data-key="t-form-advanced">پلاگین های پیشرفته</a></li>
+                                <li><a href="form-editors.html" data-key="t-form-editors">ادیتور ها</a></li>
+                                <li><a href="form-uploads.html" data-key="t-form-upload">اپلود فایل</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="sliders"></i>
+                                <span data-key="t-tables">جداول</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="tables-basic.html" data-key="t-basic-tables">جدول ساده</a></li>
+                                <li><a href="tables-datatable.html" data-key="t-data-tables">دیتا تیبل</a></li>
+                                <li><a href="tables-responsive.html" data-key="t-responsive-table">ریسپانسیو</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="pie-chart"></i>
+                                <span data-key="t-charts">نمودارها</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+
+                                <li><a href="charts-chartjs.html" data-key="t-chartjs-charts">چارت جی اس</a></li>
+                                <li><a href="charts-flot.html" data-key="t-knob-charts">فلوت</a></li>
+                                <li><a href="charts-sparkline.html" data-key="t-sparkline-charts">اسپارک لاین</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="cpu"></i>
+                                <span data-key="t-icons">ایکون ها</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="icons-boxicons.html" data-key="t-boxicons">باکس ایکون</a></li>
+                                <li><a href="icons-materialdesign.html" data-key="t-material-design">جزئیات طراحی</a></li>
+                                <li><a href="icons-dripicons.html" data-key="t-dripicons">دریپ ایکون</a></li>
+                                <li><a href="icons-fontawesome.html" data-key="t-font-awesome">فونت اوسام</a></li>
+                            </ul>
+                        </li>
+
+
+
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="share-2"></i>
+                                <span data-key="t-multi-level">چند سطحی</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="javascript: void(0);" data-key="t-level-1-1">سطح 1-1-1</a></li>
+                                <li>
+                                    <a href="javascript: void(0);" class="has-arrow" data-key="t-level-1-2">سطح 1-1-2</a>
+                                    <ul class="sub-menu" aria-expanded="true">
+                                        <li><a href="javascript: void(0);" data-key="t-level-2-1">سطح 1-2-1</a></li>
+                                        <li><a href="javascript: void(0);" data-key="t-level-2-2">سطح 1-2-2</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    <div class="card sidebar-alert border-0 text-center mx-4 mb-0 mt-5">
+                        <div class="card-body">
+                            <img src="~/Layout/assets/images/giftbox.png" alt="">
+                            <div class="mt-4">
+                                <h5 class="alertcard-title font-size-16">افر ویژه</h5>
+                                <p class="font-size-13">این ورژن دارای افر ویژه است</p>
+                                <a href="#!" class="btn btn-primary mt-2">ثبت سفارش</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+                    @RenderBody();
+                    <!-- start page title -->
+                    <!-- end page title -->
+                    <!-- end row-->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+
+        </div>
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>
+                            ۲۰۲۲
+                        </script> © فوداتکو.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            طراحی وتوسعه با <a href="#!" class="text-decoration-underline">فوداتکو</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+
+    <div class="right-bar">
+        <div data-simplebar class="h-100">
+            <div class="rightbar-title d-flex align-items-center bg-dark p-3">
+
+                <h5 class="m-0 me-2 text-white">سفارشی سازی تم</h5>
+
+                <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                    <i class="mdi mdi-close noti-icon"></i>
+                </a>
+            </div>
+
+            <!-- Settings -->
+            <hr class="m-0" />
+
+            <div class="p-4">
+                <h6 class="mb-3">چیدمان</h6>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout" id="layout-vertical" value="vertical">
+                    <label class="form-check-label" for="layout-vertical">عمومی</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout" id="layout-horizontal" value="horizontal">
+                    <label class="form-check-label" for="layout-horizontal">افقی</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">حالت چیدمان</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-mode" id="layout-mode-light" value="light">
+                    <label class="form-check-label" for="layout-mode-light">روشن</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-mode" id="layout-mode-dark" value="dark">
+                    <label class="form-check-label" for="layout-mode-dark">تاریک</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">عرض طرح بندی</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-width" id="layout-width-fuild" value="fuild" onchange="document.body.setAttribute('data-layout-size', 'fluid')">
+                    <label class="form-check-label" for="layout-width-fuild">کامل</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-width" id="layout-width-boxed" value="boxed" onchange="document.body.setAttribute('data-layout-size', 'boxed')">
+                    <label class="form-check-label" for="layout-width-boxed">باکس</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">طرح بندی</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-position" id="layout-position-fixed" value="fixed" onchange="document.body.setAttribute('data-layout-scrollable', 'false')">
+                    <label class="form-check-label" for="layout-position-fixed">ثابت</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-position" id="layout-position-scrollable" value="scrollable" onchange="document.body.setAttribute('data-layout-scrollable', 'true')">
+                    <label class="form-check-label" for="layout-position-scrollable">اسکرول</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">رنگ تاب بار</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="topbar-color" id="topbar-color-light" value="light" onchange="document.body.setAttribute('data-topbar', 'light')">
+                    <label class="form-check-label" for="topbar-color-light">روشن</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="topbar-color" id="topbar-color-dark" value="dark" onchange="document.body.setAttribute('data-topbar', 'dark')">
+                    <label class="form-check-label" for="topbar-color-dark">تاریک</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2 sidebar-setting">اندازه سایدبار</h6>
+
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-default" value="default" onchange="document.body.setAttribute('data-sidebar-size', 'lg')">
+                    <label class="form-check-label" for="sidebar-size-default">پیش فرض</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-compact" value="compact" onchange="document.body.setAttribute('data-sidebar-size', 'md')">
+                    <label class="form-check-label" for="sidebar-size-compact">فشرده</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-size" id="sidebar-size-small" value="small" onchange="document.body.setAttribute('data-sidebar-size', 'sm')">
+                    <label class="form-check-label" for="sidebar-size-small">کوچک</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2 sidebar-setting">رنگ سایدبار</h6>
+
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-light" value="light" onchange="document.body.setAttribute('data-sidebar', 'light')">
+                    <label class="form-check-label" for="sidebar-color-light">روشن</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-dark" value="dark" onchange="document.body.setAttribute('data-sidebar', 'dark')">
+                    <label class="form-check-label" for="sidebar-color-dark">تاریک</label>
+                </div>
+                <div class="form-check sidebar-setting">
+                    <input class="form-check-input" type="radio" name="sidebar-color" id="sidebar-color-brand" value="brand" onchange="document.body.setAttribute('data-sidebar', 'brand')">
+                    <label class="form-check-label" for="sidebar-color-brand">برند</label>
+                </div>
+
+                <h6 class="mt-4 mb-3 pt-2">جهت نمایش</h6>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-direction" id="layout-direction-ltr" value="ltr">
+                    <label class="form-check-label" for="layout-direction-ltr">چپ چین</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="layout-direction" id="layout-direction-rtl" value="rtl">
+                    <label class="form-check-label" for="layout-direction-rtl">راست چین</label>
+                </div>
+
+            </div>
+
+        </div> <!-- end slimscroll-menu-->
+    </div>
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Layout/assets/libs/jquery/jquery.min.js"></script>
+    <script src="~/Layout/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Layout/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/Layout/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/Layout/assets/libs/node-waves/waves.min.js"></script>
+    <script src="~/Layout/assets/libs/feather-icons/feather.min.js"></script>
+    <!-- pace js -->
+    <script src="~/Layout/assets/libs/pace-js/pace.min.js"></script>
+
+    <!-- apexcharts -->
+    <script src="~/Layout/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Plugins js-->
+    <script src="~/Layout/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Layout/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- dashboard init -->
+    <script src="~/Layout/assets/js/pages/dashboard.init.js"></script>
+
+    <script src="~/Layout/assets/js/app.js"></script>
+
+</body>
+
+</html>
+
+
+
+
+@* <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OAuth_Presentation</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OAuth_Presentation.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">OAuth_Presentation</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2025 - OAuth_Presentation - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html> *@
