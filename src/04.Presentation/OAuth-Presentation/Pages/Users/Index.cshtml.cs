@@ -17,6 +17,18 @@ public class IndexModel : PageModel
 
     public async Task OnGet()
     {
-        GetAllUsers = await _service.GetAll();
+
+        var (users, error) = await _service.GetAll();
+        if (error.HasError)
+        {
+            TempData["Error"] = error.Message;
+            GetAllUsers=new List<GetAllUserDto>();
+            return;
+        }
+
+        GetAllUsers = users;
+
+
+
     }
 }
