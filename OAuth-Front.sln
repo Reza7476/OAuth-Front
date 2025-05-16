@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OAuth-Presentation", "src\0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Common", "00.Common", "{A1703A43-0F0D-4E23-AACA-4EC51B14C90F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuth-Front.Common", "src\00.Common\OAuth-Front\OAuth-Front.Common.csproj", "{F44818FE-FFDE-4098-BCF8-D779213A1E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OAuth-Front.Common", "src\00.Common\OAuth-Front\OAuth-Front.Common.csproj", "{F44818FE-FFDE-4098-BCF8-D779213A1E16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

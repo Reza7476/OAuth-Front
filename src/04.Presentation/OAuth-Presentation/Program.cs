@@ -1,4 +1,5 @@
 using OAuth_Presentation.Configurations;
+using OAuth_Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,8 @@ builder.Services.AddCustomHttpClient(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+var a = app.Environment.IsDevelopment();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -23,7 +26,7 @@ else
 {
     app.UseDeveloperExceptionPage();
 }
-
+app.UseExceptionMiddleware();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
