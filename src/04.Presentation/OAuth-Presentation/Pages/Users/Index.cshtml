@@ -1,18 +1,5 @@
 ﻿@page
 @model OAuth_Presentation.Pages.Users.IndexModel
-@{
-    Layout = "_Layout";
-}
-
-@if (TempData["Error"] != null)
-{
-    <div class="alert alert-danger" role="alert">
-        @TempData["Error"]
-    </div>
-}
-
-else
-{
 
     <div class="row">
         <div class="col-lg-12">
@@ -92,4 +79,4 @@ else
         </div>
         <!-- end col -->
     </div>
-}
+
