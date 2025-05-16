@@ -1,7 +1,14 @@
+using OAuth_Presentation.Configurations;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Host.AddAutofac();
+
+builder.Services.AddCustomHttpClient(builder.Configuration);
+
 
 var app = builder.Build();
 

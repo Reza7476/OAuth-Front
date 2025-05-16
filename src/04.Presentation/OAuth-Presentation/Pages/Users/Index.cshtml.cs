@@ -1,26 +1,22 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OAuth_Front.Application.Entities.Users.Contracts;
+using OAuth_Front.Application.Entities.Users.Contracts.Dtos;
 
 namespace OAuth_Presentation.Pages.Users;
 
 public class IndexModel : PageModel
 {
-
-    public string Id { get; set; }
-    public string  Name { get; set; }
-    public string  LastName { get; set; }
-    public string  UserName { get; set; }
-
-
-
     private readonly IUserService _service;
+
     public IndexModel(IUserService service)
     {
         _service = service;
     }
 
-    public async Task<List<IndexModel>> OnGet()
+    public List<GetAllUserDto> GetAllUsers { get; set; }
+
+    public async Task OnGet()
     {
-        var users = await _service.GetAll();
+        GetAllUsers = await _service.GetAll();
     }
 }
