@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using OAuth_Front.Application.Entities.Users.Contracts;
 using OAuth_Front.Application.Entities.Users.Contracts.Dtos;
+using System.Reflection.Metadata;
 
 namespace OAuth_Presentation.Pages.Users;
 
@@ -15,10 +16,9 @@ public class IndexModel : PageModel
 
     public List<GetAllUserDto> GetAllUsers { get; set; }
 
-    public async Task OnGet()
+    public async Task OnGet(string referrer)
     {
         var users = await _service.GetAll();
         GetAllUsers = users;
-
     }
 }
