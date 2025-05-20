@@ -30,23 +30,46 @@ namespace OAuth_Presentation.Middlewares
         private static Task HandleHttpRequestExceptionAsync(HttpContext context, HttpRequestException ex)
         {
             var statusCode = ex.StatusCode ?? HttpStatusCode.InternalServerError;
-            string redirectUrl = statusCode switch
+            // تعیین عنوان مناسب بر اساس کد خطا
+            string title = statusCode switch
             {
-                HttpStatusCode.BadRequest => "/Errors/400", // خطای 400
-                HttpStatusCode.Unauthorized => "/Errors/400", // خطای 401
-                HttpStatusCode.NotFound => "/Errors/400", // خطای 404
-                _ when ((int)statusCode >= 500 && (int)statusCode < 600) => "/Errors/500", // خطاهای 500-599
-                _ => "/Error"
+                HttpStatusCode.BadRequest => "درخواست نامعتبر!",
+                HttpStatusCode.Unauthorized => "دسترسی غیرمجاز!",
+                HttpStatusCode.NotFound => "یافت نشد!",
+                _ when ((int)statusCode >= 500 && (int)statusCode < 600) => "خطای سرور!",
+                _ => "خطا!"
             };
+            string message = ex.Message;
 
-            context.Response.Redirect(redirectUrl);
+            string referrer = context.Request.Query["referrer"];
+            if (string.IsNullOrWhiteSpace(referrer))
+                referrer = "/";
+
+            // ذخیره title و message در دو کوکی جداگانه
+            context.Response.Cookies.Append("ErrorTitle", title, new CookieOptions { Path = "/", Expires = DateTimeOffset.Now.AddMinutes(1) });
+            context.Response.Cookies.Append("ErrorMessage", message, new CookieOptions { Path = "/", Expires = DateTimeOffset.Now.AddMinutes(1) });
+
+            context.Response.Redirect(referrer);
             return Task.CompletedTask;
         }
 
+
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
+            string message = ex.Message;
+            string referrer = context.Request.Query["referrer"];
+            if (string.IsNullOrWhiteSpace(referrer))
+                referrer = "/";
             // خطاهای عمومی (مثل Exceptionهای داخلی)
-            context.Response.Redirect("/Error/500");
+            context.Response.Cookies.Append(
+                "ErrorTitle",
+                "server error",
+                new CookieOptions
+                {
+                    Path = "/",
+                    Expires = DateTimeOffset.Now.AddMinutes(1)
+                });
+            context.Response.Cookies.Append("ErrorMessage", message, new CookieOptions { Path = "/", Expires = DateTimeOffset.Now.AddMinutes(1) });
             return Task.CompletedTask;
         }
     }
