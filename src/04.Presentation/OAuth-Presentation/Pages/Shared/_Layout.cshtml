@@ -37,7 +37,7 @@
     <link href="~/Layout/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="~/Layout/assets/css/app-rtl.min.css" id="app-style" rel="stylesheet" type="text/css" />
-
+    <link href="~/layout/style/css/style-rtl.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -323,7 +323,7 @@
 
             <div class="page-content">
                 <div class="container-fluid">
-                    @RenderBody();
+                    @RenderBody()
                     <!-- start page title -->
                     <!-- end page title -->
                     <!-- end row-->
@@ -390,7 +390,7 @@
             if (title && message) {
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: "top-end",
+                    position: "center",
                     showConfirmButton: false,
                     timer: 4500,
                     timerProgressBar: true,
@@ -400,6 +400,9 @@
                     }
                 });
                 Toast.fire({
+                    customClass: {
+                        popup: 'swal-responsive'
+                    },
                     icon: "error",
                     title: title,
                     text: message

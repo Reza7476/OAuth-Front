@@ -101,3 +101,22 @@ body {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
 }
 
+
+@media (max-width: 1024px) {
+    .swal-responsive {
+        width: 50vw !important;
+    }
+}
+
+@media (max-width: 700px) {
+    .swal-responsive {
+        width: 80vw !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .swal-responsive {
+        width: 95vw !important;
+    }
+}
+
