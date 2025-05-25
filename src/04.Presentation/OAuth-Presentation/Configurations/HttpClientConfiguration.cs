@@ -7,7 +7,7 @@ public static class HttpClientConfiguration
         services.AddHttpClient("ApiClient", (serviceProvider, client) =>
         {
             var config = configuration.GetSection("ApiSettings");
-            client.BaseAddress = new Uri(config["BaseUrl"]);
+            client.BaseAddress = new Uri(config["BaseUrl"]!);
         }).ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler
         {
             ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true

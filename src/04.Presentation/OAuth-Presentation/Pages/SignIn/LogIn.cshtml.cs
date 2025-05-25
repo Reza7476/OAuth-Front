@@ -16,9 +16,9 @@ namespace OAuth_Presentation.Pages.SignIn
         }
 
         [BindProperty]
-        public LogInDto Dto { get; set; }
+        public LogInDto Dto { get; set; } = default!;
 
-        public string Result { get; set; }
+        public string? Result { get; set; }
         public void OnGet()
         {
         }

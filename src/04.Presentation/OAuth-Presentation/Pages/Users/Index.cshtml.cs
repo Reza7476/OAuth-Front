@@ -14,7 +14,7 @@ public class IndexModel : PageModel
         _service = service;
     }
 
-    public List<GetAllUserDto> GetAllUsers { get; set; }
+    public List<GetAllUserDto> GetAllUsers { get; set; } = default!;
 
     public async Task OnGet(string referrer)
     {
