@@ -17,13 +17,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore src/04.Presentation/OAuth-Presentation/OAuth-Presentation.csproj
 
       - name: Build project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build src/04.Presentation/OAuth-Presentation/OAuth-Presentation.csproj --configuration Release --no-restore
 
       - name: Publish project
-        run: dotnet publish --configuration Release --no-restore --output ./publish
+        run: dotnet publish src/04.Presentation/OAuth-Presentation/OAuth-Presentation.csproj --configuration Release --no-restore --output ./publish
 
       - name: Deploy to Production via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -32,4 +32,3 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./publish/
-        
