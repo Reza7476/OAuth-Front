@@ -9,7 +9,7 @@ builder.Services.AddRazorPages();
 builder.Host.AddAutofac();
 
 builder.Services.AddCustomHttpClient(builder.Configuration);
-
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -29,7 +29,7 @@ else
 app.UseExceptionMiddleware();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();

@@ -27,6 +27,11 @@ namespace OAuth_Presentation.Pages.SignIn
         public async Task<IActionResult> OnPost()
         {
             Result = await _registerService.LogIn(Dto);
+            if (Result != null)
+            {
+                HttpContext.Session.SetString("JwtToken", Result);
+            }
+
             return RedirectToPage("/index");
         }
     }
