@@ -1,0 +1,130 @@
+﻿@page
+@model OAuth_Presentation.Pages.SignIn.LogInModel
+@{
+    Layout = null;
+}
+
+
+
+<!doctype html>
+<html lang="en" dir="rtl">
+
+<head>
+
+    <meta charset="utf-8" />
+    <title>Dashboard | پنل مدیریت فوداتکو</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/Layout/assets/images/favicon.ico">
+
+    <!-- plugin css -->
+    <link href="~/Layout/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="~/Layout/assets/css/preloader.min.css" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="~/Layout/assets/css/bootstrap-rtl.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="~/Layout/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="~/Layout/assets/css/app-rtl.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="~/layout/style/css/style-rtl.min.css" rel="stylesheet" />
+</head>
+
+<body style="background-image: url(/Layout/assets/images/bg.jpg)">
+
+    <!-- <body data-layout="horizontal"> -->
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- end page title -->
+                    <div class="main-wrapper">
+                        <div class="page-wrapper full-page">
+                            <div class="page-content d-flex align-items-center justify-content-center">
+
+                                <div class="row w-100 mx-0 auth-page">
+                                    <div class="col-md-12 col-xl-6 mx-auto">
+                                        <div class="card">
+                                            <div class="row">
+
+                                                <div class="col-md-12 ps-md-0">
+                                                    <div class="auth-form-wrapper px-4 py-5">
+                                                        <h5 class="text-muted fw-normal mb-4">به صفحه ورود خوش امدید</h5>
+                                                        <form class="forms-sample" method="post">
+                                                            <div class="mb-3">
+                                                                <label class="form-label">نام کاربری </label>
+                                                                <input type="text" class="form-control" asp-for="Dto.UserName" placeholder="نام کاربری ">
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label class="form-label">پسوورد</label>
+                                                                <input type="password" class="form-control" asp-for="Dto.Password" autocomplete="current-password" placeholder="پسوورد">
+                                                            </div>
+                                                            <input style="display:none"
+                                                                   type="text" class="form-control"
+                                                                   asp-for="Dto.SiteAudience"
+                                                                   placeholder="پسوورد"
+                                                                   value="@($"{HttpContext.Request.Path}{HttpContext.Request.QueryString}")" />
+
+                                                            <button type="submit" class="d-block mt-3 text-muted">ورود</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- end row -->
+                </div>
+                <!-- container-fluid -->
+            </div>
+
+
+
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Layout/assets/libs/jquery/jquery.min.js"></script>
+    <script src="~/Layout/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Layout/assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/Layout/assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/Layout/assets/libs/node-waves/waves.min.js"></script>
+    <script src="~/Layout/assets/libs/feather-icons/feather.min.js"></script>
+    <!-- pace js -->
+    <script src="~/Layout/assets/libs/pace-js/pace.min.js"></script>
+
+    <!-- apexcharts -->
+    <script src="~/Layout/assets/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Plugins js-->
+    <script src="~/Layout/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Layout/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- dashboard init -->
+    <script src="~/Layout/assets/js/pages/dashboard.init.js"></script>
+
+    <script src="~/Layout/assets/js/app.js"></script>
+
+</body>
+
+</html>
