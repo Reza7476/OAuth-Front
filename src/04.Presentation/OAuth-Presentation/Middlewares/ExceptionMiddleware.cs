@@ -41,7 +41,7 @@ namespace OAuth_Presentation.Middlewares
             };
             string message = ex.Message;
 
-            string referrer = context.Request.Query["referrer"];
+            string referrer = context.Request.Query["referrer"]!;
             if (string.IsNullOrWhiteSpace(referrer))
                 referrer = "/";
 
@@ -57,7 +57,7 @@ namespace OAuth_Presentation.Middlewares
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             string message = ex.Message;
-            string referrer = context.Request.Query["referrer"];
+            string referrer = context.Request.Query["referrer"]!;
             if (string.IsNullOrWhiteSpace(referrer))
                 referrer = "/";
             // خطاهای عمومی (مثل Exceptionهای داخلی)
