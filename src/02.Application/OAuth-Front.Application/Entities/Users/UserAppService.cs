@@ -1,24 +1,59 @@
-﻿using OAuth_Front.Application.Configurations;
-using OAuth_Front.Application.Entities.Users.Contracts;
+﻿using OAuth_Front.Application.Entities.Users.Contracts;
 using OAuth_Front.Application.Entities.Users.Contracts.Dtos;
-using System.Net.Http.Json;
+using OAuth_Front.Dtos;
+using System.Net.Http.Headers;
+using System.Text.Json;
 
 namespace OAuth_Front.Application.Entities.Users;
 
 public class UserAppService : IUserService
 {
-    private readonly IHttpClientService _httpClientService;
 
-    public UserAppService(IHttpClientService httpClientService)
+
+    public UserAppService()
     {
-        _httpClientService = httpClientService;
     }
 
-    public async Task<List<GetAllUserDto>> GetAll()
+    public async Task<ApiResultDto<List<GetAllUserDto>>> GetAll(string token)
     {
-        var response = await _httpClientService.GetAsync("users/all");
-        response.EnsureSuccessStatusCode();
-        var users = await response.Content.ReadFromJsonAsync<List<GetAllUserDto>>();
-        return users ?? new List<GetAllUserDto>();
+        using var client = new HttpClient();
+        if (!string.IsNullOrEmpty(token))
+            client.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", token);
+
+        var response = await client.GetAsync("http://oauth.rdehghai.ir/api/users/all");
+        var result = new ApiResultDto<List<GetAllUserDto>>();
+        var json = await response.Content.ReadAsStringAsync();
+        if (response.IsSuccessStatusCode)
+        {
+            //result.Success = true;
+            //try
+            //{
+            //result.Data  = JsonSerializer.Deserialize<List<GetAllUserDto>>(json);
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw new Exception(ex.Message);
+            //}
+
+            result.Error = "error";
+            result.StatusCode = 400;
+            result.Success = false;
+        }
+        else
+        {
+            result.Success = false;
+            using var doc = JsonDocument.Parse(json);
+            var root = doc.RootElement;
+
+            if (root.TryGetProperty("error", out var errorProp))
+                result.Error = errorProp.GetString();
+
+            if (root.TryGetProperty("description", out var descProp))
+                result.Description = descProp.GetString();
+        }
+        return result;
     }
 }

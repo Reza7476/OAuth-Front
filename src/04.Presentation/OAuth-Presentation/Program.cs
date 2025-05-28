@@ -8,7 +8,6 @@ builder.Services.AddRazorPages();
 
 builder.Host.AddAutofac();
 
-builder.Services.AddCustomHttpClient(builder.Configuration);
 builder.Services.AddSession();
 
 var app = builder.Build();
@@ -26,7 +25,7 @@ else
 {
     app.UseDeveloperExceptionPage();
 }
-app.UseExceptionMiddleware();
+//app.UseExceptionMiddleware();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();

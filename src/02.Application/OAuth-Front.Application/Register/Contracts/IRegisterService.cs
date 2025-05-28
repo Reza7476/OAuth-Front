@@ -1,9 +1,10 @@
 ﻿using OAuth_Front.Application.Register.Contracts.Dtos;
+using OAuth_Front.Dtos;
 using OAuth_Front.Interfaces;
 
 namespace OAuth_Front.Application.Register.Contracts;
 
 public interface IRegisterService : IService
 {
-    Task<string> LogIn(LogInDto dto);
+    Task<ApiResultDto<string>> LogIn(LogInDto dto);
 }

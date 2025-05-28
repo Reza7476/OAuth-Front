@@ -25,6 +25,7 @@ public class AutofacModule : Module
 {
     protected override void Load(ContainerBuilder _)
     {
+
         var assembly = System.Reflection.Assembly.GetAssembly(typeof(IUserService));
         if (assembly != null)
         {
@@ -56,5 +57,7 @@ public class AutofacModule : Module
             var clientFactory = ctx.Resolve<IHttpClientFactory>();
             return clientFactory.CreateClient();
         }).As<HttpClient>().InstancePerLifetimeScope();
+
+   
     }
 }
