@@ -2,9 +2,9 @@
 
 public class GetAllUserDto
 {
-    public required string Id { get; set; }
-    public required string Name { get; set; }
-    public required string UserName { get; set; }
-    public required string LastName { get; set; }
-    public required string Mobile { get; set; }
+    public  string id { get; set; }
+    public  string name { get; set; }
+    public  string userName { get; set; }
+    public  string lastName { get; set; }
+    public  string mobile { get; set; }
 }

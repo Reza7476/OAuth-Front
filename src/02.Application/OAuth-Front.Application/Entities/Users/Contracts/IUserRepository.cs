@@ -2,6 +2,6 @@
 
 namespace OAuth_Front.Application.Entities.Users.Contracts;
 
-public interface IUserRepository:IRepository
+public interface IUserRepository : IRepository
 {
 }
