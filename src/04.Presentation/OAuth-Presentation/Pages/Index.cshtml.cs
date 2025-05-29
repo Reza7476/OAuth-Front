@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.IdentityModel.Tokens.Jwt;
+﻿namespace OAuth_Presentation.Pages;
 
-namespace OAuth_Presentation.Pages;
-
-public class IndexModel : PageModel
+public class IndexModel : BasePageModel
 {
     private readonly ILogger<IndexModel> _logger;
 
