@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using OAuth_Front.Application.Entities.Users.Contracts;
+﻿using OAuth_Front.Application.Entities.Users.Contracts;
 using OAuth_Front.Application.Entities.Users.Contracts.Dtos;
 using OAuth_Front.Dtos;
 
 namespace OAuth_Presentation.Pages.Users;
 
-public class IndexModel : PageModel
+public class IndexModel : BasePageModel
 {
     private readonly IUserService _service;
 
@@ -29,7 +27,6 @@ public class IndexModel : PageModel
         var d = $"{HttpContext.Request.QueryString}";
         var dd = a + b;
         var fullUrl = a + b + c + d;
-        Redirect(a + b);
         var users = await _service.GetAll(token!);
         if (users.Success)
         {
