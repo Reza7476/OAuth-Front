@@ -1,44 +1,27 @@
-﻿using OAuth_Front.Application.Entities.Users.Contracts;
+﻿using Microsoft.AspNetCore.Mvc;
 using OAuth_Front.Application.Entities.Users.Contracts.Dtos;
 using OAuth_Front.Dtos;
+using OAuth_Presentation.Services.Users;
+using System.Reflection.Metadata.Ecma335;
 
 namespace OAuth_Presentation.Pages.Users;
 
 public class IndexModel : BasePageModel
 {
+
     private readonly IUserService _service;
-
-
-
     public IndexModel(IUserService service)
     {
         _service = service;
     }
 
-    public ApiResultDto<List<GetAllUserDto>> GetAllUsers { get; set; } = new();
 
-
-    public async Task OnGet()
+    public async Task<IActionResult> OnGet()
     {
         var token = HttpContext.Session.GetString("JwtToken");
-        var a = $"{HttpContext.Request.Scheme}://";
-        var b = $"{HttpContext.Request.Host}";
-        var c = $"{HttpContext.Request.Path}";
-        var d = $"{HttpContext.Request.QueryString}";
-        var dd = a + b;
-        var fullUrl = a + b + c + d;
-        var users = await _service.GetAll(token!);
-        if (users.Success)
-        {
-            GetAllUsers = users;
-        }
-        else
-        {
-            HttpContext.Response.Cookies.Append("ErrorTitle", users.StatusCode.ToString());
-            HttpContext.Response.Cookies.Append("ErrorTitle", users.Error!);
+        var users = await _service.GetAll(token);
 
-            Redirect(a + b);
-        }
-
+        return new JsonResult(new {data=users.Data,success=users.IsSuccess});
     }
+
 }

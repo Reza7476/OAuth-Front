@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using OAuth_Front.Application.Configurations;
-using OAuth_Front.Application.Entities.Users.Contracts;
 using OAuth_Front.Interfaces;
 using OAuth_Presentation.Services;
 
@@ -25,8 +24,26 @@ public class AutofacModule : Module
 {
     protected override void Load(ContainerBuilder _)
     {
+        var baseAddress = "Https://oauth.rdehghai.ir/api/";
+        var assembly = System.Reflection.Assembly.GetAssembly(typeof(OAutoFacConfig));
 
-        var assembly = System.Reflection.Assembly.GetAssembly(typeof(IUserService));
+       // _.RegisterType<HttpContextAccessor>()
+       //   .As<IHttpContextAccessor>()
+       //   .SingleInstance();
+       // _.RegisterType<JwtTokenHandler>();
+
+       //// ثبت HttpClient با Handler و baseAddress
+       // _.Register(ctx =>
+       // {
+       //     var handler = ctx.Resolve<JwtTokenHandler>();
+       //     var client = new HttpClient(handler)
+       //     {
+       //         BaseAddress = new Uri(baseAddress)
+       //     };
+       //     return client;
+       // }).As<HttpClient>().InstancePerLifetimeScope();
+
+
         if (assembly != null)
         {
             var serviceTypes = assembly.GetTypes()
@@ -42,14 +59,13 @@ public class AutofacModule : Module
                 {
                     _.RegisterType(implementationType)
                         .As(serviceType)
+                        .WithParameter("baseAddress", baseAddress)
                         .InstancePerLifetimeScope();
                 }
             }
         }
 
-        _.RegisterType<HttpClientService>()
-                .As<IHttpClientService>()
-                .InstancePerLifetimeScope();
+      
 
 
         _.Register(ctx =>
@@ -58,6 +74,6 @@ public class AutofacModule : Module
             return clientFactory.CreateClient();
         }).As<HttpClient>().InstancePerLifetimeScope();
 
-   
+
     }
 }

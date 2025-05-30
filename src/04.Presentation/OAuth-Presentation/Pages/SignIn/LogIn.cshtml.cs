@@ -2,45 +2,48 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OAuth_Front.Application.Register.Contracts;
 using OAuth_Front.Application.Register.Contracts.Dtos;
-using OAuth_Front.Dtos;
+using OAuth_Presentation.Services.Authentication;
+using System.ComponentModel.DataAnnotations;
 
 namespace OAuth_Presentation.Pages.SignIn
 {
-
+    [BindProperties]
     public class LogInModel : PageModel
     {
-        private readonly IRegisterService _registerService;
+        [Required(ErrorMessage = "نام کاربری را وارد کنید")]
+        public string UserName { get; set; }
 
-        public LogInModel(
-            IRegisterService registerService)
+
+        [Required(ErrorMessage = "رمز عبور را وارد کنید")]
+        public string Password { get; set; }
+        
+         private readonly IAuthService _authService;
+        public LogInModel(IAuthService authService)
         {
-            _registerService = registerService;
+            _authService = authService;
         }
 
-        [BindProperty]
-        public LogInDto Dto { get; set; } = default!;
 
-        public ApiResultDto<string> Result { get; set; }
         public void OnGet()
         {
-
         }
 
         public async Task<IActionResult> OnPost()
         {
-            Result = await _registerService.LogIn(Dto);
-
-            if (Result.Success)
+            var result = await _authService.LogIn(new LogInDto()
             {
-                HttpContext.Session.SetString("JwtToken", Result.Data!);
+                Password = Password,
+                UserName = UserName,
+                SiteAudience = "oauth.front.rdehghai.ir"
+            });
+
+            if (result.IsSuccess)
+            {
+                HttpContext.Session.SetString("JwtToken", result.Data.Token);
                 return RedirectToPage("../Index");
             }
-            else
-            {
-                HttpContext.Response.Cookies.Append("ErrorTitle", Result.StatusCode.ToString());
-                HttpContext.Response.Cookies.Append("ErrorMessage", Result.Error!);
-                return Page();
-            }
+            ModelState.AddModelError(nameof(UserName), result.Error);
+            return Page();
 
         }
     }

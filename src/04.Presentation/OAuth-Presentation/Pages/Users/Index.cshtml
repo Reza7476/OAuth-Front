@@ -34,7 +34,10 @@
                 <!-- end row -->
 
                 <div class="table-responsive">
-                    <table class="table align-middle datatable dt-responsive table-check nowrap" style="border-collapse: collapse; border-spacing: 0 8px; width: 100%;">
+                    <table 
+                        class="table align-middle datatable dt-responsive table-check nowrap"
+                           id="users-table"
+                        style="border-collapse: collapse; border-spacing: 0 8px; width: 100%;">
                         <thead>
                             <tr class="bg-transparent">
 
@@ -45,8 +48,8 @@
                                 <th style="width: 90px;">عملیات</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @if (Model.GetAllUsers.Data != null)
+                        <tbody >
+                           @*  @if (Model.GetAllUsers.Data != null)
                             {
                                 @foreach (var user in Model.GetAllUsers.Data)
                                 {
@@ -69,7 +72,7 @@
                                         </td>
                                     </tr>
                                 }
-                            }
+                            } *@
                         </tbody>
                     </table>
                 </div>

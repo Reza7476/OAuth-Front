@@ -5,8 +5,17 @@ using System.Net.Http.Json;
 
 namespace OAuth_Front.Application.Register;
 
-public class RegisterAppService : IRegisterService
+public class RegisterAppService :IRegisterService
 {
+    private readonly HttpClient _client;
+
+    public RegisterAppService(HttpClient httpClient , string baseAddress)
+    {
+        _client = httpClient;
+        _client.BaseAddress=new Uri(baseAddress);
+
+    }
+
     public async Task<ApiResultDto<string>> LogIn(LogInDto dto)
     {
         try
@@ -14,19 +23,18 @@ public class RegisterAppService : IRegisterService
             var result = new ApiResultDto<string>();
             var site = dto.SiteAudience.ToString();
             dto.SiteAudience = "oauth.front.rdehghai.ir";
-            using var client = new HttpClient();
-            var response = await client.PostAsJsonAsync("https://oauth.rdehghai.ir/api/SignIn/login", dto);
+            var response = await _client.PostAsJsonAsync("SignIn/login", dto);
             //var response = await client.PostAsJsonAsync("https://localhost:44345/api/SignIn/login", dto);
             result.StatusCode = (int)response.StatusCode;
             var resultContent = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
-                result.Data=resultContent;
-                result.Success = true;
+                result.Data = resultContent;
+                result.IsSuccess = true;
             }
             else
             {
-                result.Success = false;
+                result.IsSuccess = false;
                 using var doc = System.Text.Json.JsonDocument.Parse(resultContent);
                 var root = doc.RootElement;
 

@@ -281,7 +281,7 @@
             <div class="page-content">
                 <div class="container-fluid">
                     @RenderBody()
-                   
+
                 </div> <!-- container-fluid -->
             </div>
             <!-- End Page-content -->
@@ -362,7 +362,48 @@
                     text: message
                 });
             }
+
         })
+            function loadUsers() {
+                $.ajax({
+                    url: '/Users/Index?handler=Users', // اگر Razor Page
+                    // url: '/api/users/list',         // اگر Controller
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.success) {
+                            let html = '';
+                            res.data.forEach(function (user) {
+                                html += `<tr>
+                                <td>${user.name}</td>
+                                <td>${user.lastName}</td>
+                                <td>${user.userName}</td>
+                                <td>${user.mobile}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link font-size-16 shadow-none py-0 text-muted dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="bx bx-dots-horizontal-rounded"></i>
+                                        </button>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li><a class="dropdown-item" href="#">ویرایش</a></li>
+                                            <li><a class="dropdown-item" href="#">پرینت</a></li>
+                                            <li><a class="dropdown-item" href="#">حذف</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>`;
+                            });
+                            $('#users-table tbody').html(html);
+                        } else {
+                            alert(res.error || 'خطا در دریافت داده!');
+                        }
+                    },
+                    error: function () {
+                        alert('خطا در ارتباط با سرور');
+                    }
+                });
+            }
+
+                      
 
     </script>
 </body>
