@@ -10,19 +10,19 @@ public class UserRoleViewComponent : ViewComponent
     {
         var token = HttpContext.Session.GetString("JwtToken");
 
+
         List<string> roles = new();
 
         if (!string.IsNullOrEmpty(token))
         {
             var handler = new JwtSecurityTokenHandler();
             var jwt = handler.ReadJwtToken(token);
+            var claims = jwt.Claims;
             roles = jwt.Claims
-                .Where(c => c.Type == System.Security.Claims.ClaimTypes.Role
-                         || c.Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/role")
+                .Where(c => c.Type == "role")
                 .Select(c => c.Value)
                 .ToList();
         }
-
         return View(new UserRoleModel()
         {
             Roles = roles
