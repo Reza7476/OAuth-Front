@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OAuth_Front.Application.Register.Contracts.Dtos;
+namespace OAuth_Presentation.Models.Auth;
 
 public class LogInDto
 {

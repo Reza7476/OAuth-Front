@@ -82,27 +82,23 @@
                                                         <form class="forms-sample" method="post">
                                                             <div class="mb-3">
                                                                 <label class="form-label">نام کاربری </label>
-                                                                <input type="text" 
-                                                                    asp-for="Dto.UserName" 
+                                                                <input 
+                                                                    type="text" 
+                                                                    asp-for="UserName" 
                                                                     id="userName"
                                                                     class="form-control"
                                                                     placeholder="نام کاربری ">
                                                             </div>
                                                             <div class="mb-3">
                                                                 <label class="form-label">رمز عبور</label>
-                                                                <input type="password" 
-                                                                    asp-for="Dto.Password" 
+                                                                <input 
+                                                                    type="password" 
+                                                                    asp-for="Password" 
                                                                     id="password"
                                                                     class="form-control"
                                                                     autocomplete="current-password"
                                                                     placeholder="رمز عبور">
                                                             </div>
-                                                            <input style="display:none"
-                                                                   type="text" class="form-control"
-                                                                   asp-for="Dto.SiteAudience"
-                                                                   placeholder="پسوورد"
-                                                                   value="@($"{HttpContext.Request.Path}{HttpContext.Request.QueryString}")" />
-
                                                             <button type="submit" class="d-block mt-3 text-muted">ورود</button>
 
                                                             <input type="hidden" id="errorTitle" value="@errorTitle" />

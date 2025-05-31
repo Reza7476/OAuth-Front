@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddHttpClient();
 
 builder.Host.AddAutofac();
 
@@ -25,6 +26,8 @@ else
 {
     app.UseDeveloperExceptionPage();
 }
+
+app.UseFrontExceptionHandler();
 //app.UseExceptionMiddleware();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
