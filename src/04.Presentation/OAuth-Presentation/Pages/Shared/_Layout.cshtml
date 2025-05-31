@@ -1,19 +1,21 @@
-﻿@using OAuth_Front.Application.Register.Contracts
+﻿@using OAuth_Presentation.Models.Commons
+@using System.Text.Json
 @{
-    var errorTitle = Context.Request.Cookies["ErrorTitle"];
-    var errorMessage = Context.Request.Cookies["ErrorMessage"];
-    var userName = Context.Session.GetString("FullName");
-    if (!string.IsNullOrEmpty(errorTitle))
+    var alertJson = TempData["AlertMessage"] as string;
+    AlertMessage alert = null;
+    if (!string.IsNullOrWhiteSpace(alertJson))
     {
-        Context.Response.Cookies.Delete("ErrorTitle");
+        alert = JsonSerializer.Deserialize<AlertMessage>(alertJson);
     }
-    if (!string.IsNullOrEmpty(errorMessage))
-    {
-        Context.Response.Cookies.Delete("ErrorMessage");
-    }
-
 }
-
+@if (alert != null)
+{
+    <div class="alert alert-@alert.Type.ToString().ToLower() alert-dismissible fade show" role="alert">
+        <strong>@alert.Title</strong><br />
+        @Html.Raw(alert.Message)
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 <!doctype html>
 <html lang="en" dir="rtl">
 
@@ -40,6 +42,8 @@
     <!-- App Css-->
     <link href="~/Layout/assets/css/app-rtl.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link href="~/layout/style/css/style-rtl.min.css" rel="stylesheet" />
+    <link href="~/layout/style/css/oauth.shimmer.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -300,9 +304,6 @@
                         <div class="text-sm-end d-none d-sm-block">
                             طراحی وتوسعه با <a href="#!" class="text-decoration-underline">فوداتکو</a>
                         </div>
-
-                        <input type="hidden" id="errorTitle" value="@errorTitle" />
-                        <input type="hidden" id="errorMessage" value="@errorMessage" />
                     </div>
                 </div>
             </div>
@@ -323,10 +324,8 @@
     <script src="~/Layout/assets/libs/feather-icons/feather.min.js"></script>
     <!-- pace js -->
     <script src="~/Layout/assets/libs/pace-js/pace.min.js"></script>
-
     <!-- apexcharts -->
     <script src="~/Layout/assets/libs/apexcharts/apexcharts.min.js"></script>
-
     <!-- Plugins js-->
     <script src="~/Layout/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="~/Layout/assets/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
@@ -335,77 +334,40 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/Layout/assets/js/app.js"></script>
-
+    @RenderSection("Scripts", false)
     <script>
-
         $(() => {
-            var title = $("#errorTitle").val();
-            var message = $("#errorMessage").val();
-            if (title && message) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "center",
-                    showConfirmButton: false,
-                    timer: 4500,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.onmouseenter = Swal.stopTimer;
-                        toast.onmouseleave = Swal.resumeTimer;
-                    }
-                });
-                Toast.fire({
-                    customClass: {
-                        popup: 'swal-responsive'
-                    },
-                    icon: "error",
-                    title: title,
-                    text: message
-                });
-            }
+            //ShowAlert(1, 'عملیات با موفقیت انجام شد!');
+             // ShowAlert(2, 'خطایی رخ داد!');
+            //ShowAlert(3, 'هشدار!');
+            //ShowAlert(4, 'اطلاع رسانی!');
+        });
 
-        })
-            function loadUsers() {
-                $.ajax({
-                    url: '/Users/Index?handler=Users', // اگر Razor Page
-                    // url: '/api/users/list',         // اگر Controller
-                    method: 'GET',
-                    success: function (res) {
-                        if (res.success) {
-                            let html = '';
-                            res.data.forEach(function (user) {
-                                html += `<tr>
-                                <td>${user.name}</td>
-                                <td>${user.lastName}</td>
-                                <td>${user.userName}</td>
-                                <td>${user.mobile}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-link font-size-16 shadow-none py-0 text-muted dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bx bx-dots-horizontal-rounded"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-end">
-                                            <li><a class="dropdown-item" href="#">ویرایش</a></li>
-                                            <li><a class="dropdown-item" href="#">پرینت</a></li>
-                                            <li><a class="dropdown-item" href="#">حذف</a></li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>`;
-                            });
-                            $('#users-table tbody').html(html);
-                        } else {
-                            alert(res.error || 'خطا در دریافت داده!');
-                        }
-                    },
-                    error: function () {
-                        alert('خطا در ارتباط با سرور');
-                    }
-                });
-            }
+        function ShowErrorAlert(statusCode, title) {
+           
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "center",
+                showConfirmButton: false,
+                timer: 4500,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
+            Toast.fire({
+                customClass: {
+                    popup: 'swal-responsive'
+                },
+                icon: 'error',
+                title: title
+            });
+        }
 
-                      
 
     </script>
+
 </body>
 
 </html>

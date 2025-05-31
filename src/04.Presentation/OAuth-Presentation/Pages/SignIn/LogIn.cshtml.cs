@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OAuth_Front.Application.Register.Contracts;
-using OAuth_Front.Application.Register.Contracts.Dtos;
+using OAuth_Presentation.Models.Auth;
 using OAuth_Presentation.Services.Authentication;
 using System.ComponentModel.DataAnnotations;
 
@@ -13,16 +12,14 @@ namespace OAuth_Presentation.Pages.SignIn
         [Required(ErrorMessage = "نام کاربری را وارد کنید")]
         public string UserName { get; set; }
 
-
         [Required(ErrorMessage = "رمز عبور را وارد کنید")]
         public string Password { get; set; }
-        
-         private readonly IAuthService _authService;
+
+        private readonly IAuthService _authService;
         public LogInModel(IAuthService authService)
         {
             _authService = authService;
         }
-
 
         public void OnGet()
         {

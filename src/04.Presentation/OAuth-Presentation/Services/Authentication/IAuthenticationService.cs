@@ -1,7 +1,6 @@
-﻿using OAuth_Front.Application.Register.Contracts.Dtos;
-using OAuth_Front.Dtos;
-using OAuth_Front.Interfaces;
+﻿using OAuth_Presentation.Configurations.Interfaces;
 using OAuth_Presentation.Models.Auth;
+using OAuth_Presentation.Models.Commons;
 
 namespace OAuth_Presentation.Services.Authentication;
 

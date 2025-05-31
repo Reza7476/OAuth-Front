@@ -1,8 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using OAuth_Front.Application.Configurations;
-using OAuth_Front.Interfaces;
-using OAuth_Presentation.Services;
+using OAuth_Presentation.Configurations.Interfaces;
 
 namespace OAuth_Presentation.Configurations;
 
@@ -27,21 +25,21 @@ public class AutofacModule : Module
         var baseAddress = "Https://oauth.rdehghai.ir/api/";
         var assembly = System.Reflection.Assembly.GetAssembly(typeof(OAutoFacConfig));
 
-       // _.RegisterType<HttpContextAccessor>()
-       //   .As<IHttpContextAccessor>()
-       //   .SingleInstance();
-       // _.RegisterType<JwtTokenHandler>();
+        // _.RegisterType<HttpContextAccessor>()
+        //   .As<IHttpContextAccessor>()
+        //   .SingleInstance();
+        // _.RegisterType<JwtTokenHandler>();
 
-       //// ثبت HttpClient با Handler و baseAddress
-       // _.Register(ctx =>
-       // {
-       //     var handler = ctx.Resolve<JwtTokenHandler>();
-       //     var client = new HttpClient(handler)
-       //     {
-       //         BaseAddress = new Uri(baseAddress)
-       //     };
-       //     return client;
-       // }).As<HttpClient>().InstancePerLifetimeScope();
+        //// ثبت HttpClient با Handler و baseAddress
+        // _.Register(ctx =>
+        // {
+        //     var handler = ctx.Resolve<JwtTokenHandler>();
+        //     var client = new HttpClient(handler)
+        //     {
+        //         BaseAddress = new Uri(baseAddress)
+        //     };
+        //     return client;
+        // }).As<HttpClient>().InstancePerLifetimeScope();
 
 
         if (assembly != null)
@@ -65,7 +63,7 @@ public class AutofacModule : Module
             }
         }
 
-      
+
 
 
         _.Register(ctx =>

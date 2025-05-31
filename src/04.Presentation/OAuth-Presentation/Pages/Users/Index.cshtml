@@ -32,12 +32,11 @@
                     </div>
                 </div>
                 <!-- end row -->
-
+               
                 <div class="table-responsive">
-                    <table 
-                        class="table align-middle datatable dt-responsive table-check nowrap"
+                    <table class="table align-middle datatable dt-responsive table-check nowrap"
                            id="users-table"
-                        style="border-collapse: collapse; border-spacing: 0 8px; width: 100%;">
+                           style="border-collapse: collapse; border-spacing: 0 8px; width: 100%;">
                         <thead>
                             <tr class="bg-transparent">
 
@@ -48,16 +47,40 @@
                                 <th style="width: 90px;">عملیات</th>
                             </tr>
                         </thead>
-                        <tbody >
-                           @*  @if (Model.GetAllUsers.Data != null)
-                            {
-                                @foreach (var user in Model.GetAllUsers.Data)
-                                {
-                                    <tr>
-                                        <td>@user.name</td>
-                                        <td>@user.lastName</td>
-                                        <td>@user.userName</td>
-                                        <td>@user.mobile</td>
+                        <tbody>
+                        <tbody id="shimmer-body">
+                        
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table responsive -->
+            </div>
+            <!-- end card body -->
+        </div>
+        <!-- end card -->
+    </div>
+    <!-- end col -->
+</div>
+@section Scripts
+{
+    <script>
+
+
+        $(() => {
+            ShowShimmer();
+
+            $.ajax({
+                url: '/Users?handler=Users',
+                method: 'GET',
+                success: function (res) {
+                    if (res.success) {
+                        let html = '';
+                        res.data.forEach(function (user) {
+                            html += `<tr>
+                                        <td>${user.name}</td>
+                                        <td>${user.lastName}</td>
+                                        <td>${user.userName}</td>
+                                        <td>${user.mobile}</td>
                                         <td>
                                             <div class="dropdown">
                                                 <button class="btn btn-link font-size-16 shadow-none py-0 text-muted dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,18 +93,37 @@
                                                 </ul>
                                             </div>
                                         </td>
-                                    </tr>
-                                }
-                            } *@
-                        </tbody>
-                    </table>
-                </div>
-                <!-- end table responsive -->
-            </div>
-            <!-- end card body -->
-        </div>
-        <!-- end card -->
-    </div>
-    <!-- end col -->
-</div>
+                                    </tr>`;
+                        });
+                        $('#shimmer-body').html(html);
+                    } else {
+                        ShowErrorAlert(res.statusCode, res.error );
+                    }
+                    $('#shimmer').hide();
+                },
+                error: function (res) {
+                    ShowErrorAlert(3, res.error);
+                    $('#shimmer').hide();
+                }
+            });
+        });
 
+       
+
+        function ShowShimmer(){
+            var shimmerRows = '';
+            for (let i = 0; i < 5; i++ ){
+                shimmerRows += `
+                <tr>
+                        <td><div class="shimmer" style="width:80px;"></div></td>
+                        <td><div class="shimmer" style="width:120px;"></div></td>
+                        <td><div class="shimmer" style="width:80px;"></div></td>
+                        <td><div class="shimmer" style="width:110px;"></div></td>
+                        <td><div class="shimmer" style="width:60px;"></div></td>
+                </tr>`;
+            }
+            $("#shimmer-body").html(shimmerRows);
+        }
+
+    </script>
+}

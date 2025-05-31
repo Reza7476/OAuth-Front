@@ -1,10 +1,10 @@
-﻿using OAuth_Front.Application.Entities.Users.Contracts.Dtos;
-using OAuth_Front.Dtos;
-using OAuth_Front.Interfaces;
+﻿using OAuth_Presentation.Configurations.Interfaces;
+using OAuth_Presentation.Models.Commons;
+using OAuth_Presentation.Models.Users;
 
 namespace OAuth_Presentation.Services.Users;
 
 public interface IUserService : IService
 {
-    Task<ApiResultDto<List<GetAllUserDto>>> GetAll(string? token);
+    Task<ApiResultDto<List<GetUserDto>>> GetAll(string? token);
 }

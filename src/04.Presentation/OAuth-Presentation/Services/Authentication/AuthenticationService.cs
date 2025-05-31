@@ -1,6 +1,5 @@
-﻿using OAuth_Front.Application.Register.Contracts.Dtos;
-using OAuth_Front.Dtos;
-using OAuth_Presentation.Models.Auth;
+﻿using OAuth_Presentation.Models.Auth;
+using OAuth_Presentation.Models.Commons;
 
 namespace OAuth_Presentation.Services.Authentication;
 
@@ -16,9 +15,10 @@ public class AuthenticationService : IAuthService
 
     public async Task<ApiResultDto<LoginResponse>> LogIn(LogInDto dto)
     {
-        var result = new ApiResultDto<LoginResponse>();
         var response = await _client.PostAsJsonAsync("SignIn/Login", dto);
         var resultContent = await response.Content.ReadAsStringAsync();
+
+        var result = new ApiResultDto<LoginResponse>();
         if (response.IsSuccessStatusCode)
         {
             result.StatusCode = 200;
