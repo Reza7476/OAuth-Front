@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using OAuth_Presentation.Models.Auth;
 using OAuth_Presentation.Services.Authentication;
@@ -42,6 +43,16 @@ namespace OAuth_Presentation.Pages.SignIn
             ModelState.AddModelError(nameof(UserName), result.Error);
             return Page();
 
+        }
+
+        public async Task<IActionResult> OnGetLoginGoogle()
+        {
+            var redirectUrl = Url.Page("GoogleCallBack", null, null, Request.Scheme);
+            var properties = new AuthenticationProperties
+            {
+                RedirectUri = redirectUrl,
+            };
+            return Challenge(properties, "Google");
         }
     }
 }

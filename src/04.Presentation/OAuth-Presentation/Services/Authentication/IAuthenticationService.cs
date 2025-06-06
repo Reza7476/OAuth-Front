@@ -7,4 +7,5 @@ namespace OAuth_Presentation.Services.Authentication;
 public interface IAuthService : IService
 {
     Task<ApiResultDto<LoginResponse>> LogIn(LogInDto dto);
+    Task<ApiResultDto<LoginResponse>> LogInWithGoogle(LoginWithGoogleDto dto);
 }

@@ -45,4 +45,37 @@ public class AuthenticationService : IAuthService
 
         return result;
     }
+
+    public async Task<ApiResultDto<LoginResponse>> LogInWithGoogle(LoginWithGoogleDto dto)
+    {
+        var response = await _client.PostAsJsonAsync("SignIn/logIn-with-google", dto);
+        var resultContent = await response.Content.ReadAsStringAsync();
+
+        var result = new ApiResultDto<LoginResponse>();
+        if (response.IsSuccessStatusCode)
+        {
+            result.StatusCode = 200;
+            result.Data = new LoginResponse
+            {
+                Token = resultContent
+            };
+            result.IsSuccess = response.IsSuccessStatusCode;
+        }
+        else
+        {
+            using var doc = System.Text.Json.JsonDocument.Parse(resultContent);
+            var root = doc.RootElement;
+
+            if (root.TryGetProperty("error", out var errorProp))
+                result.Error = errorProp.GetString();
+
+            if (root.TryGetProperty("description", out var descProp))
+                result.Description = descProp.GetString();
+
+            result.StatusCode = (int)response.StatusCode;
+            result.IsSuccess = response.IsSuccessStatusCode;
+        }
+
+        return result;
+    }
 }
