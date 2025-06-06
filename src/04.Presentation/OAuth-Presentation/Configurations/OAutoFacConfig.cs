@@ -6,12 +6,12 @@ namespace OAuth_Presentation.Configurations;
 
 public static class OAutoFacConfig
 {
-    public static ConfigureHostBuilder AddAutofac(this ConfigureHostBuilder builder)
+    public static ConfigureHostBuilder AddAutofac(this ConfigureHostBuilder builder,string baseAddress)
     {
         builder.UseServiceProviderFactory(new AutofacServiceProviderFactory());
         builder.ConfigureContainer<ContainerBuilder>(option =>
         {
-            option.RegisterModule(new AutofacModule());
+            option.RegisterModule(new AutofacModule(baseAddress));
         });
 
         return builder;
@@ -20,27 +20,17 @@ public static class OAutoFacConfig
 
 public class AutofacModule : Module
 {
+    private readonly string _baseAddress;
+
+    public AutofacModule(string baseAddress)
+    {
+        _baseAddress = baseAddress;
+    }
+
     protected override void Load(ContainerBuilder _)
     {
-        var baseAddress = "Https://oauth.rdehghai.ir/api/";
+        var baseAddress = _baseAddress;
         var assembly = System.Reflection.Assembly.GetAssembly(typeof(OAutoFacConfig));
-
-        // _.RegisterType<HttpContextAccessor>()
-        //   .As<IHttpContextAccessor>()
-        //   .SingleInstance();
-        // _.RegisterType<JwtTokenHandler>();
-
-        //// ثبت HttpClient با Handler و baseAddress
-        // _.Register(ctx =>
-        // {
-        //     var handler = ctx.Resolve<JwtTokenHandler>();
-        //     var client = new HttpClient(handler)
-        //     {
-        //         BaseAddress = new Uri(baseAddress)
-        //     };
-        //     return client;
-        // }).As<HttpClient>().InstancePerLifetimeScope();
-
 
         if (assembly != null)
         {

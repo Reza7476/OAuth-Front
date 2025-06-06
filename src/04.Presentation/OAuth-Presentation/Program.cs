@@ -1,15 +1,19 @@
 using OAuth_Presentation.Configurations;
+using OAuth_Presentation.Configurations.Google;
 using OAuth_Presentation.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var baseAddress = builder.Configuration["ApiSettings:BaseUrl"];
 // Add services to the container.
 builder.Services.AddRazorPages();
+
 builder.Services.AddHttpClient();
 
-builder.Host.AddAutofac();
+builder.Host.AddAutofac(baseAddress!);
 
 builder.Services.AddSession();
+
+builder.Services.AddGoogleAuth(builder.Configuration);
 
 var app = builder.Build();
 
