@@ -63,6 +63,14 @@ public class AuthenticationService : IAuthService
         }
         else
         {
+            if (resultContent == null)
+            {
+               result.StatusCode = (int)response.StatusCode;
+               result.IsSuccess = response.IsSuccessStatusCode;
+                result.Error = "error ";
+                return result;
+
+            }
             using var doc = System.Text.Json.JsonDocument.Parse(resultContent);
             var root = doc.RootElement;
 
